@@ -1,1157 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakshi Jain - Software Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2c3e50;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #3498db;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #3498db;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 85vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 2rem 1rem;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            z-index: 2;
-            max-width: 700px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 1.8rem;
-            line-height: 1.5;
-        }
-
-        .cta-button {
-            padding: 10px 25px;
-            font-size: 1rem;
-            border-radius: 40px;
-        }
-
-        /* Section spacing */
-        .section {
-            padding: 60px 2rem;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .about-image-container {
-            height: 200px;
-        }
-
-        .about-text {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: #555;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .skill-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            border-color: #3498db;
-        }
-
-        .skill-card h3 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .skill-card p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .skill-tag {
-            background: linear-gradient(45deg, #3498db, #9b59b6);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        /* Experience Section */
-        .experience-timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .experience-timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(45deg, #3498db, #9b59b6);
-        }
-
-        .experience-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 4rem;
-            position: relative;
-        }
-
-        .experience-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .experience-content {
-            flex: 1;
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin: 0 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .experience-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .experience-date {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(45deg, #3498db, #9b59b6);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            z-index: 10;
-        }
-
-        .experience-content h3 {
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-
-        .experience-content h4 {
-            color: #3498db;
-            margin-bottom: 1rem;
-        }
-
-        .experience-content ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .experience-content li {
-            padding: 0.3rem 0;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .experience-content li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: #3498db;
-            font-weight: bold;
-        }
-
-        /* Projects Section */
-        .projects-carousel {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .projects-container {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .project-card {
-            min-width: 100%;
-            background: white;
-            padding: 3rem;
-            text-align: center;
-        }
-
-        .project-card h3 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .project-card p {
-            color: #666;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .tech-tag {
-            background: linear-gradient(45deg, #e74c3c, #f39c12);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .carousel-controls {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .carousel-btn {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            margin: 0 0.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-        }
-
-        .carousel-indicators {
-            text-align: center;
-            margin-top: 1rem;
-        }
-
-        .indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #bdc3c7;
-            margin: 0 0.5rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .indicator.active {
-            background: #3498db;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: #fff;
-            padding: 4rem 2rem;
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            max-width: 1000px;
-            margin: auto;
-            align-items: center;
-        }
-
-        .contact-info {
-            text-align: left;
-        }
-
-        .contact-icons a {
-            color: white;
-            font-size: 2rem;
-            margin-right: 1rem;
-            transition: transform 0.2s ease;
-        }
-
-        .contact-icons a:hover {
-            transform: scale(1.2);
-        }
-
-        .contact-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .contact-form .form-group.full {
-            grid-column: 1 / -1;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .contact-form button {
-            grid-column: 1 / -1;
-            background: #fff;
-            color: #333;
-            padding: 0.9rem;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-        }
-
-        .contact-form button:hover {
-            background: #f4f4f4;
-        }
-
-        @media (max-width: 768px) {
-        .contact-container {
-            grid-template-columns: 1fr;
-        }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .experience-timeline::before {
-                left: 2rem;
-            }
-
-            .experience-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .experience-item:nth-child(even) {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .experience-content {
-                margin-left: 4rem;
-                margin-right: 0;
-            }
-
-            .experience-date {
-                left: 2rem;
-                transform: none;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        /* Animations for scroll reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sakshi Jain - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
-
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">Home</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
+<body class="font-inter bg-gray-100 text-gray-800">
+  <!-- Header -->
+  <header id="header" class="bg-white shadow-md fixed w-full top-0 z-50 transition-colors duration-300">
+    <nav class="container mx-auto px-6 py-4">
+      <ul class="flex justify-center space-x-6">
+        <li><a href="#home" class="text-gray-700 hover:text-blue-600 transition">Home</a></li>
+        <li><a href="#about" class="text-gray-700 hover:text-blue-600 transition">About</a></li>
+        <li><a href="#skills" class="text-gray-700 hover:text-blue-600 transition">Skills</a></li>
+        <li><a href="#experience" class="text-gray-700 hover:text-blue-600 transition">Experience</a></li>
+        <li><a href="#projects" class="text-gray-700 hover:text-blue-600 transition">Projects</a></li>
+        <li><a href="#contact" class="text-gray-700 hover:text-blue-600 transition">Contact</a></li>
+      </ul>
     </nav>
+  </header>
 
-   <!-- Hero Section -->
-    <section id="home" class="hero">
-    <div class="hero-content">
-        <h1>Sakshi Jain</h1>
-        <p>Experienced Software Engineer | Python, C & Test Automation Expert | AI Explorer | Seeking Automotive Roles.</p>
-        <a href="#about" class="cta-button">Explore My Work</a>
-    </div>
+  <!-- Main Content with Padding to Avoid Header Overlap -->
+  <main class="pt-20">
+    <!-- Hero Section with Typing Effect and Parallax -->
+    <section id="home" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-32 text-center relative overflow-hidden animate-fadeIn">
+      <div class="absolute inset-0 bg-[url('https://via.placeholder.com/1920x1080')] bg-cover bg-center opacity-20 parallax-bg"></div>
+      <div class="relative z-10">
+        <h1 class="text-4xl font-bold mb-2" id="typed-name"></h1>
+        <p class="text-lg mb-4" id="typed-title"></p>
+        <a href="#about" class="bg-white text-indigo-600 px-6 py-2 rounded-full hover:bg-indigo-100 transition">Explore My Work</a>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-    <h2 class="reveal">About Me</h2>
-    <div class="about-content reveal">
-        <div class="about-image-container">
-        <img src="Sakshi.png" alt="Profile Picture of Sakshi Jain" class="profile-picture" />
+    <!-- About Me Section -->
+    <section id="about" class="py-16 bg-white animate-fadeIn">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-8">About Me</h2>
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <img src="https://via.placeholder.com/150" alt="Sakshi Jain" class="w-40 h-40 rounded-full object-cover">
+          <div>
+            <p class="text-lg text-gray-700 mb-4">
+              I'm a dedicated software engineer with over 3 years of comprehensive experience in automation testing and software development. My expertise spans across Python, C scripting, and various testing frameworks, with a proven track record of working with high-profile clients like BMW Group, Hutchison 3G UK Ltd, and Frontier Communications.
+            </p>
+            <p class="text-lg text-gray-700 mb-4">
+              Currently pursuing opportunities in automotive software development, I'm passionate about leveraging cutting-edge technologies to create innovative solutions. My experience includes developing customer-specific software solutions, optimizing test frameworks, and establishing robust CI/CD pipelines that improve development efficiency and software quality.
+            </p>
+            <p class="text-lg text-gray-700">
+              With a Master's in Software Engineering for Industrial Applications and strong foundations in cloud computing, project management, and Industry 4.0 technologies, I'm ready to contribute to forward-thinking organizations.
+            </p>
+          </div>
         </div>
-        <div class="about-text">
-        <p>
-            With over 3 years of industry experience, I specialize in developing scalable software systems using Python and C.
-            I've contributed to advanced test automation frameworks, built CI/CD pipelines, and led cross-functional projects
-            in the automotive domain.
-        </p>
-        <p>
-            Currently, I'm looking for challenging roles in the automotive industry where I can leverage my skills in Software development, and Devops.
-            I'm also passionate about exploring AI technologies and their applications in software engineering.
-        </p>
-        </div>
-    </div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <h2 class="reveal">Skills & Expertise</h2>
-        <div class="skills-grid">
-            <div class="skill-card reveal">
-                <h3>Programming Languages</h3>
-                <p>Strong foundation in multiple programming languages</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">C</span>
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">CGDC Scripting</span>
-                </div>
+    <!-- Skills & Expertise Section with Carousel -->
+    <section id="skills" class="py-16 bg-gray-100 animate-fadeIn">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-8">Skills & Expertise</h2>
+        <div class="carousel overflow-hidden relative">
+          <div class="carousel-inner flex transition-transform duration-500" style="width: 300%;">
+            <div class="carousel-item flex-none w-1/3 px-4">
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-4">Programming Languages</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> Python</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> C</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> C++</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> CGDC Scripting</li>
+                </ul>
+              </div>
             </div>
-            <div class="skill-card reveal">
-                <h3>Web Development</h3>
-                <p>Full-stack web development capabilities</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">HTML</span>
-                    <span class="skill-tag">CSS</span>
-                    <span class="skill-tag">Bootstrap</span>
-                    <span class="skill-tag">Yii Framework</span>
-                </div>
+            <div class="carousel-item flex-none w-1/3 px-4">
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-4">Web Development</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> HTML</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> CSS</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> Bootstrap</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> Yii Framework</li>
+                </ul>
+              </div>
             </div>
-            <div class="skill-card reveal">
-                <h3>Testing & Automation</h3>
-                <p>Comprehensive testing and automation expertise</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Pytest</span>
-                    <span class="skill-tag">Unit Testing</span>
-                    <span class="skill-tag">Test Automation</span>
-                </div>
+            <div class="carousel-item flex-none w-1/3 px-4">
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-4">Testing & Automation</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> Pytest</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> Selenium</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> Unit Testing</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> Test Automation</li>
+                </ul>
+              </div>
             </div>
-            <div class="skill-card reveal">
-                <h3>DevOps & Tools</h3>
-                <p>Modern development and deployment practices</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">Jenkins</span>
-                    <span class="skill-tag">JIRA</span>
-                    <span class="skill-tag">CI/CD</span>
-                </div>
+            <div class="carousel-item flex-none w-1/3 px-4">
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-4">DevOps & Tools</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> Git</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> Jenkins</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> JIRA</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> CI/CD</li>
+                </ul>
+              </div>
             </div>
-            <div class="skill-card reveal">
-                <h3>Databases</h3>
-                <p>Database design and management</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">MongoDB</span>
-                </div>
+            <div class="carousel-item flex-none w-1/3 px-4">
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-4">Databases</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> MySQL</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> MongoDB</li>
+                </ul>
+              </div>
             </div>
-            <div class="skill-card reveal">
-                <h3>Networking</h3>
-                <p>Strong networking fundamentals</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">TCP/IP</span>
-                    <span class="skill-tag">HTTP</span>
-                    <span class="skill-tag">Network Protocols</span>
-                </div>
+            <div class="carousel-item flex-none w-1/3 px-4">
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold mb-4">Networking</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> TCP/IP</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> HTTP</li>
+                  <li class="flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> Network Protocols</li>
+                </ul>
+              </div>
             </div>
+          </div>
+          <button class="prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10">❮</button>
+          <button class="next absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10">❯</button>
         </div>
+      </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-        <h2 class="reveal">Work Experience</h2>
-        <div class="experience-timeline">
-            <div class="experience-item reveal">
-                <div class="experience-date">2023-2024</div>
-                <div class="experience-content">
-                    <h3>Software Engineering Intern</h3>
-                    <h4>Atlas Copco Application Center Europe GmbH, Germany</h4>
-                    <ul>
-                        <li>Developed customer-specific software solutions and system integrations</li>
-                        <li>Created comprehensive test frameworks using Pytest, improving coverage by 20%</li>
-                        <li>Established robust CI/CD pipelines with Git and Jenkins</li>
-                        <li>Worked with networking technologies including TCP/IP, HTTP, and S5 protocol</li>
-                        <li>Implemented agile methodologies and conducted thorough code reviews</li>
-                    </ul>
-                </div>
+    <!-- Work Experience Section with Responsive Timeline -->
+    <section id="experience" class="py-16 bg-white animate-fadeIn">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-8">Work Experience</h2>
+        <div class="relative">
+          <div class="border-l-2 border-blue-200 absolute h-full left-8 sm:left-1/2 transform -translate-x-1/2 sm:-translate-x-0"></div>
+          <div class="space-y-12">
+            <div class="relative pl-16 sm:pl-0 sm:flex sm:items-start sm:space-x-6">
+              <div class="absolute left-8 sm:left-1/2 transform -translate-x-full sm:-translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full"></div>
+              <div class="bg-gray-100 p-6 rounded-lg shadow-md w-full sm:w-5/6 sm:ml-auto">
+                <h3 class="text-xl font-semibold">Software Engineering Intern</h3>
+                <p class="text-gray-600">Atlas Copco Application Center Europe GmbH, Germany | 2023-2024</p>
+                <ul class="list-disc list-inside mt-4 space-y-2">
+                  <li>Developed customer-specific software solutions and system integrations</li>
+                  <li>Created comprehensive test frameworks using Pytest, improving coverage by 20%</li>
+                  <li>Established robust CI/CD pipelines with Git and Jenkins</li>
+                  <li>Worked with networking technologies including TCP/IP, HTTP, and S5 protocol</li>
+                  <li>Implemented agile methodologies and conducted thorough code reviews</li>
+                </ul>
+              </div>
             </div>
-            <div class="experience-item reveal">
-                <div class="experience-date">2021-2022</div>
-                <div class="experience-content">
-                    <h3>Network Engineer</h3>
-                    <h4>Tech Mahindra - Client: Frontier Communications, India</h4>
-                    <ul>
-                        <li>Coordinated and monitored various customer requests including Ethernet, MDU, SFU, FiOS</li>
-                        <li>Worked as Broadband engineer handling pricing for E-path and FTTCS services</li>
-                        <li>Created weekly backlog reports and tracked orders through post-Engineering processes</li>
-                        <li>Ensured timely completion of customer requests and service implementations</li>
-                    </ul>
-                </div>
+            <div class="relative pl-16 sm:pl-0 sm:flex sm:items-start sm:space-x-6">
+              <div class="absolute left-8 sm:left-1/2 transform -translate-x-full sm:-translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full"></div>
+              <div class="bg-gray-100 p-6 rounded-lg shadow-md w-full sm:w-5/6">
+                <h3 class="text-xl font-semibold">Network Engineer</h3>
+                <p class="text-gray-600">Tech Mahindra - Client: Frontier Communications, India | 2021-2022</p>
+                <ul class="list-disc list-inside mt-4 space-y-2">
+                  <li>Coordinated and monitored various customer requests including Ethernet, MDU, SFU, FiOS</li>
+                  <li>Worked as Broadband engineer handling pricing for E-path and FTTCS services</li>
+                  <li>Created weekly backlog reports and tracked orders through post-Engineering processes</li>
+                  <li>Ensured timely completion of customer requests and service implementations</li>
+                </ul>
+              </div>
             </div>
-            <div class="experience-item reveal">
-                <div class="experience-date">2019-2021</div>
-                <div class="experience-content">
-                    <h3>Associate Software Engineer</h3>
-                    <h4>Tech Mahindra - Client: Hutchison 3G UK Ltd., India</h4>
-                    <ul>
-                        <li>Used C Scripts to manipulate network data using Intermediate (IME version 6.0)</li>
-                        <li>Created comprehensive test plans and conducted thorough system testing</li>
-                        <li>Performed unit testing and gathered feedback from pre-release testers</li>
-                        <li>Investigated, documented, and resolved software defects</li>
-                        <li>Supported software release activities and competitive analysis</li>
-                    </ul>
-                </div>
+            <div class="relative pl-16 sm:pl-0 sm:flex sm:items-start sm:space-x-6">
+              <div class="absolute left-8 sm:left-1/2 transform -translate-x-full sm:-translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full"></div>
+              <div class="bg-gray-100 p-6 rounded-lg shadow-md w-full sm:w-5/6 sm:ml-auto">
+                <h3 class="text-xl font-semibold">Associate Software Engineer</h3>
+                <p class="text-gray-600">Tech Mahindra - Client: Hutchison 3G UK Ltd., India | 2019-2021</p>
+                <ul class="list-disc list-inside mt-4 space-y-2">
+                  <li>Used C Scripts to manipulate network data using Intermediate (IME version 6.0)</li>
+                  <li>Created comprehensive test plans and conducted thorough system testing</li>
+                  <li>Performed unit testing and gathered feedback from pre-release testers</li>
+                  <li>Investigated, documented, and resolved software defects</li>
+                  <li>Supported software release activities and competitive analysis</li>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <h2 class="reveal">Personal Projects</h2>
-        <div class="projects-carousel reveal">
-            <div class="projects-container" id="projectsContainer">
-                <div class="project-card">
-                    <h3>Recipe Blog using LAMP Stack</h3>
-                    <p>Developed a user-centric cooking recipe blog website leveraging the LAMP stack and Yii framework. The platform enhances culinary skills, fosters community engagement, and inspires creativity among users with features like recipe sharing, user interactions, and personalized recommendations.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Apache</span>
-                        <span class="tech-tag">Linux</span>
-                        <span class="tech-tag">Yii Framework</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h3>Face Recognition Web Application</h3>
-                    <p>Built a comprehensive web application using OpenCV Python library with HTML and CSS frontend. The system captures faces using camera input and automatically marks attendance for students and staff members of an organization, providing an efficient automated attendance management solution.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">OpenCV</span>
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">Computer Vision</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h3>Movie Recommender System</h3>
-                    <p>Created a content-based movie recommendation system using advanced Python libraries. The system analyzes user preferences and movie characteristics to provide personalized movie suggestions, featuring an intuitive Streamlit interface for seamless user interaction.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">Scikit-learn</span>
-                        <span class="tech-tag">Pickle</span>
-                        <span class="tech-tag">Streamlit</span>
-                    </div>
-                </div>
+    <!-- Personal Projects Section with Cards -->
+    <section id="projects" class="py-16 bg-gray-100 animate-fadeIn">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-8">Personal Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow-md animate-projectFadeIn">
+            <h3 class="text-xl font-semibold">Recipe Blog using LAMP Stack</h3>
+            <p class="text-gray-600 mt-2">
+              Developed a user-centric cooking recipe blog website leveraging the LAMP stack and Yii framework. The platform enhances culinary skills, fosters community engagement, and inspires creativity among users with features like recipe sharing, user interactions, and personalized recommendations.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">PHP</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">MySQL</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Apache</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Linux</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Yii Framework</span>
             </div>
-            <div class="carousel-controls">
-                <button class="carousel-btn" onclick="previousProject()">Previous</button>
-                <button class="carousel-btn" onclick="nextProject()">Next</button>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md animate-projectFadeIn">
+            <h3 class="text-xl font-semibold">Face Recognition Web Application</h3>
+            <p class="text-gray-600 mt-2">
+              Built a comprehensive web application using OpenCV Python library with HTML and CSS frontend. The system captures faces using camera input and automatically marks attendance for students and staff members of an organization, providing an efficient automated attendance management solution.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">OpenCV</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">HTML</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">CSS</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Computer Vision</span>
             </div>
-            <div class="carousel-indicators">
-                <span class="indicator active" onclick="showProject(0)"></span>
-                <span class="indicator" onclick="showProject(1)"></span>
-                <span class="indicator" onclick="showProject(2)"></span>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md animate-projectFadeIn">
+            <h3 class="text-xl font-semibold">Movie Recommender System</h3>
+            <p class="text-gray-600 mt-2">
+              Created a content-based movie recommendation system using advanced Python libraries. The system analyzes user preferences and movie characteristics to provide personalized movie suggestions, featuring an intuitive Streamlit interface for seamless user interaction.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Python</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Pandas</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Scikit-learn</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Pickle</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Streamlit</span>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h2>Let's Connect</h2>
-                    <p>I'm always open to discussing new opportunities and innovative projects. Feel free to reach out!</p>
-
-                <div class="contact-icons">
-                    <a href="mailto:sjain040395@gmail.com" target="_blank" title="Email">
-                    <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/sjain04/" target="_blank" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/sjain2580" target="_blank" title="GitHub">
-                    <i class="fab fa-github"></i>
-                    </a>
-                    <a href="tel:+919066859325" title="Call">
-                    <i class="fas fa-phone"></i>
-                    </a>
-                </div>
-                </div>
-
-            <form
-            action="https://formsubmit.co/sjain040395@gmail.com"
-            method="POST"
-            class="contact-form"
-            >
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://sjain2580.github.io/Portfolio/thanks.html" />
-
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input name="name" type="text" required />
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input name="email" type="email" required />
-            </div>
-
-            <div class="form-group full">
-                <label for="message">Message</label>
-                <textarea name="message" rows="5" required></textarea>
-            </div>
-
-            <button type="submit">Send Message</button>
-            </form>
+    <!-- Contact Section with Icons -->
+    <section id="contact" class="py-16 bg-gradient-to-r from-indigo-600 to-purple-600 text-white animate-fadeIn">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-8">Let's Connect</h2>
+        <p class="text-lg mb-6">I'm always open to discussing new opportunities and innovative projects. Feel free to reach out!</p>
+        <div class="flex justify-center space-x-6">
+          <a href="mailto:sakshi.jain@example.com" class="inline-flex items-center bg-white text-indigo-600 px-4 py-2 rounded-full hover:bg-indigo-100 transition">
+            <i class="fas fa-envelope mr-2"></i> Email Me
+          </a>
+          <a href="https://linkedin.com/in/sakshijain" class="inline-flex items-center bg-white text-indigo-600 px-4 py-2 rounded-full hover:bg-indigo-100 transition">
+            <i class="fab fa-linkedin mr-2"></i> LinkedIn
+          </a>
+          <a href="https://github.com/sakshijain" class="inline-flex items-center bg-white text-indigo-600 px-4 py-2 rounded-full hover:bg-indigo-100 transition">
+            <i class="fab fa-github mr-2"></i> GitHub
+          </a>
+          <a href="tel:+1234567890" class="inline-flex items-center bg-white text-indigo-600 px-4 py-2 rounded-full hover:bg-indigo-100 transition">
+            <i class="fas fa-phone mr-2"></i> Call Me
+          </a>
         </div>
-        </section>
-    
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            const scrollTop = document.getElementById('scrollTop');
-            
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-                scrollTop.classList.add('visible');
-            } else {
-                navbar.classList.remove('scrolled');
-                scrollTop.classList.remove('visible');
-            }
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4 text-center">
+    <p>© 2025 Sakshi Jain. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Fade-in animation for sections
+    gsap.utils.toArray('.animate-fadeIn').forEach(section => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+        }
+      });
+    });
+
+    // Fade-in animation for project cards
+    gsap.utils.toArray('.animate-projectFadeIn').forEach(card => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+        }
+      });
+    });
+
+    // Parallax effect for Hero section
+    gsap.to(".parallax-bg", {
+      y: "20%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#home",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      }
+    });
+
+    // Sticky header with color change on scroll
+    gsap.to("#header", {
+      backgroundColor: "#f9fafb",
+      scrollTrigger: {
+        trigger: "main",
+        start: "top -=100",
+        toggleActions: "play none none reverse",
+      }
+    });
+
+    // Typing effect for Hero section
+    var typedName = new Typed('#typed-name', {
+      strings: ['Sakshi Jain'],
+      typeSpeed: 20,
+      showCursor: false,
+      onComplete: function() {
+        var typedTitle = new Typed('#typed-title', {
+          strings: ['Software Engineer specializing in Automation Testing'],
+          typeSpeed: 15,
+          showCursor: false,
+          startDelay: 500
         });
+      }
+    });
 
-        // Scroll reveal animation
-        function reveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            reveals.forEach(element => {
-                const windowHeight = window.innerHeight;
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('active');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', reveal);
-        reveal(); // Call once on load
-
-        // Project carousel functionality
-        let currentProject = 0;
-        const totalProjects = 3;
-
-        function showProject(index) {
-            const container = document.getElementById('projectsContainer');
-            const indicators = document.querySelectorAll('.indicator');
-            
-            currentProject = index;
-            container.style.transform = `translateX(-${index * 100}%)`;
-            
-            indicators.forEach((indicator, i) => {
-                indicator.classList.toggle('active', i === index);
-            });
-        }
-
-        function nextProject() {
-            currentProject = (currentProject + 1) % totalProjects;
-            showProject(currentProject);
-        }
-
-        function previousProject() {
-            currentProject = (currentProject - 1 + totalProjects) % totalProjects;
-            showProject(currentProject);
-        }
-
-        // Auto-advance carousel
-        setInterval(nextProject, 6000);
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+    // Smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
         });
+      });
+    });
 
-        // Scroll to top function
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
+    // Carousel logic
+    const carouselInner = document.querySelector('.carousel-inner');
+    const items = document.querySelectorAll('.carousel-item');
+    const totalItems = items.length;
+    let currentIndex = 0;
 
-        // Add some interactive hover effects
-        document.querySelectorAll('.skill-card, .experience-content').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+    function updateCarousel() {
+      carouselInner.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
+    }
 
-        // Parallax effect for hero section
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
+    document.querySelector('.next').addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % totalItems;
+      updateCarousel();
+    });
 
-        // Typing effect for hero text
-        function typeWriter(element, text, speed = 50) {
-            let i = 0;
-            element.innerHTML = '';
-            
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
+    document.querySelector('.prev').addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+      updateCarousel();
+    });
 
-        // Initialize typing effect on page load
-        window.addEventListener('load', function() {
-            const heroTitle = document.querySelector('.hero h1');
-            const heroSubtitle = document.querySelector('.hero p');
-            
-            if (heroTitle && heroSubtitle) {
-                heroTitle.style.opacity = '1';
-                heroSubtitle.style.opacity = '1';
-                
-                setTimeout(() => {
-                    typeWriter(heroTitle, 'Sakshi Jain', 100);
-                }, 500);
-                
-                setTimeout(() => {
-                    typeWriter(heroSubtitle, 'Software Engineer specializing in Automation Testing & Development', 30);
-                }, 2000);
-            }
-        });
-
-        // Add floating animation to skill tags
-        document.querySelectorAll('.skill-tag, .tech-tag').forEach((tag, index) => {
-            tag.style.animationDelay = `${index * 0.1}s`;
-            tag.style.animation = 'float 3s ease-in-out infinite';
-        });
-
-        // Add CSS for floating animation
-        const floatingStyle = document.createElement('style');
-        floatingStyle.textContent = `
-            @keyframes float {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-5px); }
-            }
-        `;
-        document.head.appendChild(floatingStyle);
-
-        // Progress bar animation for skills
-        function animateProgressBars() {
-            const skillCards = document.querySelectorAll('.skill-card');
-            
-            skillCards.forEach(card => {
-                const progressBar = document.createElement('div');
-                progressBar.className = 'skill-progress';
-                progressBar.style.cssText = `
-                    width: 100%;
-                    height: 4px;
-                    background: #ecf0f1;
-                    border-radius: 2px;
-                    margin-top: 1rem;
-                    overflow: hidden;
-                `;
-                
-                const progress = document.createElement('div');
-                progress.style.cssText = `
-                    height: 100%;
-                    background: linear-gradient(45deg, #3498db, #9b59b6);
-                    width: 0%;
-                    border-radius: 2px;
-                    transition: width 2s ease;
-                `;
-                
-                progressBar.appendChild(progress);
-                card.appendChild(progressBar);
-                
-                // Animate progress bar when card comes into view
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const randomWidth = Math.floor(Math.random() * 30) + 70; // 70-100%
-                            progress.style.width = `${randomWidth}%`;
-                        }
-                    });
-                });
-                
-                observer.observe(card);
-            });
-        }
-
-        // Initialize progress bars
-        setTimeout(animateProgressBars, 1000);
-
-        // Add particle effect to hero section
-        function createParticles() {
-            const hero = document.querySelector('.hero');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.cssText = `
-                    position: absolute;
-                    width: 2px;
-                    height: 2px;
-                    background: rgba(255, 255, 255, 0.5);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    animation: particleFloat ${Math.random() * 3 + 2}s infinite ease-in-out;
-                    left: ${Math.random() * 100}%;
-                    top: ${Math.random() * 100}%;
-                    animation-delay: ${Math.random() * 2}s;
-                `;
-                hero.appendChild(particle);
-            }
-        }
-
-        // Add particle animation CSS
-        const particleStyle = document.createElement('style');
-        particleStyle.textContent = `
-            @keyframes particleFloat {
-                0%, 100% { 
-                    transform: translateY(0px) translateX(0px);
-                    opacity: 0;
-                }
-                50% { 
-                    transform: translateY(-20px) translateX(10px);
-                    opacity: 1;
-                }
-            }
-        `;
-        document.head.appendChild(particleStyle);
-
-        // Initialize particles
-        createParticles();
-
-        // Add loading animation
-        window.addEventListener('load', function() {
-            const body = document.body;
-            body.classList.add('loaded');
-            
-            // Add loaded class CSS
-            const loadedStyle = document.createElement('style');
-            loadedStyle.textContent = `
-                body:not(.loaded) {
-                    overflow: hidden;
-                }
-                body:not(.loaded)::before {
-                    content: '';
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    z-index: 9999;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    animation: fadeOut 1s ease-out 2s forwards;
-                }
-                @keyframes fadeOut {
-                    to {
-                        opacity: 0;
-                        visibility: hidden;
-                    }
-                }
-            `;
-            document.head.appendChild(loadedStyle);
-        });
-
-        // Add intersection observer for counter animations
-        function animateCounters() {
-            const counters = [
-                { element: null, target: 3, suffix: '+', label: 'Years Experience' },
-                { element: null, target: 5, suffix: '+', label: 'Projects Completed' },
-                { element: null, target: 10, suffix: '+', label: 'Technologies Mastered' }
-            ];
-            
-            // Create counter elements and add to about section
-            const aboutSection = document.querySelector('#about .section');
-            const counterContainer = document.createElement('div');
-            counterContainer.className = 'counter-container';
-            counterContainer.style.cssText = `
-                display: flex;
-                justify-content: space-around;
-                margin-top: 3rem;
-                text-align: center;
-                flex-wrap: wrap;
-                gap: 2rem;
-            `;
-            
-            counters.forEach((counter, index) => {
-                const counterElement = document.createElement('div');
-                counterElement.className = 'counter-item';
-                counterElement.style.cssText = `
-                    flex: 1;
-                    min-width: 150px;
-                `;
-                
-                const numberElement = document.createElement('div');
-                numberElement.className = 'counter-number';
-                numberElement.style.cssText = `
-                    font-size: 3rem;
-                    font-weight: bold;
-                    color: #3498db;
-                    margin-bottom: 0.5rem;
-                `;
-                numberElement.textContent = '0';
-                
-                const labelElement = document.createElement('div');
-                labelElement.className = 'counter-label';
-                labelElement.style.cssText = `
-                    font-size: 1rem;
-                    color: #666;
-                    font-weight: 500;
-                `;
-                labelElement.textContent = counter.label;
-                
-                counterElement.appendChild(numberElement);
-                counterElement.appendChild(labelElement);
-                counterContainer.appendChild(counterElement);
-                
-                counter.element = numberElement;
-            });
-            
-            aboutSection.appendChild(counterContainer);
-            
-            // Animate counters when they come into view
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        counters.forEach(counter => {
-                            animateCounter(counter.element, counter.target, counter.suffix);
-                        });
-                    }
-                });
-            });
-            
-            observer.observe(counterContainer);
-        }
-
-        function animateCounter(element, target, suffix = '') {
-            let current = 0;
-            const increment = target / 50;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                element.textContent = Math.floor(current) + suffix;
-            }, 40);
-        }
-
-        setTimeout(animateCounters, 500);
-    </script>
-
-    <!-- 🔝 Back to Top Button -->
-        <a href="#" id="topBtn" title="Back to top" style="
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        background: #0A66C2;
-        color: white;
-        padding: 10px 14px;
-        border-radius: 6px;
-        text-decoration: none;
-        display: none;
-        font-weight: bold;
-        font-size: 14px;
-        z-index: 1000;
-        ">⬆️ Top</a>
-
-    <script>
-        const topBtn = document.getElementById("topBtn");
-        window.onscroll = () => {
-            topBtn.style.display = window.scrollY > 300 ? "block" : "none";
-        };
-    </script>
-
-    <footer style="text-align:center; padding: 1rem; background:#f4f4f4; color:#333;">
-    <p>Made with ❤️ Sakshi 2025</p>
-    </footer>
+    // Auto-play carousel
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % totalItems;
+      updateCarousel();
+    }, 3000);
+  </script>
 </body>
 </html>
