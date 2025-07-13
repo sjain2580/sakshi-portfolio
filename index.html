@@ -484,45 +484,74 @@
 
         /* Contact Section */
         .contact-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            padding: 4rem 2rem;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: auto;
+            align-items: center;
+        }
+
+        .contact-info {
+            text-align: left;
+        }
+
+        .contact-icons a {
             color: white;
-            padding: 80px 0;
+            font-size: 2rem;
+            margin-right: 1rem;
+            transition: transform 0.2s ease;
         }
 
-        .contact-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            text-align: center;
+        .contact-icons a:hover {
+            transform: scale(1.2);
         }
 
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
         }
 
-        .contact-link {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            border: 2px solid white;
-            transition: all 0.3s ease;
-            font-weight: 500;
+        .contact-form .form-group.full {
+            grid-column: 1 / -1;
         }
 
-        .contact-link:hover {
-            background: white;
-            color: #667eea;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
         }
 
+        .contact-form button {
+            grid-column: 1 / -1;
+            background: #fff;
+            color: #333;
+            padding: 0.9rem;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: #f4f4f4;
+        }
+
+        @media (max-width: 768px) {
+        .contact-container {
+            grid-template-columns: 1fr;
+        }
+        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -781,41 +810,55 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="contact-content">
-            <h2>Let's Connect</h2>
-            <p>I'm always open to discussing new opportunities and innovative projects. Feel free to reach out!</p>
-            <div class="contact-links">
-               <a href="https://www.linkedin.com/in/sjain04/" target="_blank" rel="noopener noreferrer">
-                    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Connect on LinkedIn">
-                </a>
+        <section id="contact" class="contact-section">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Let's Connect</h2>
+                    <p>I'm always open to discussing new opportunities and innovative projects. Feel free to reach out!</p>
 
-                <a href="mailto:sjain040395@gmail.com" target="_blank" rel="noopener noreferrer">
-                    <img src="https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Sakshi Jain">
+            <div class="contact-icons">
+                <a href="mailto:sjain040395@gmail.com" target="_blank" title="Email">
+                <i class="fas fa-envelope"></i>
                 </a>
-
-                <a href="https://github.com/sjain2580" target="_blank" rel="noopener noreferrer">
-                    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="View GitHub Profile">
+                <a href="https://www.linkedin.com/in/sjain04/" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/sjain2580" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+                </a>
+                <a href="tel:+919066859325" title="Call">
+                <i class="fas fa-phone"></i>
                 </a>
             </div>
-        </div>
-        <form action="https://formsubmit.co/sjain040395@gmail.com" method="POST" class="contact-form">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://sjain2580.github.io/Portfolio/thanks.html">
+            </div>
 
-            <label for="name">Name</label>
-            <input type="text" name="name" required />
+            <form
+            action="https://formsubmit.co/sjain040395@gmail.com"
+            method="POST"
+            class="contact-form"
+            >
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://sjain2580.github.io/Portfolio/thanks.html" />
 
-            <label for="email">Email</label>
-            <input type="email" name="email" required />
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input name="name" type="text" required />
+            </div>
 
-            <label for="message">Message</label>
-            <textarea name="message" rows="5" required></textarea>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input name="email" type="email" required />
+            </div>
+
+            <div class="form-group full">
+                <label for="message">Message</label>
+                <textarea name="message" rows="5" required></textarea>
+            </div>
 
             <button type="submit">Send Message</button>
-        </form>
-    </section>
-
+            </form>
+        </div>
+        </section>
     
     <script>
         // Navbar scroll effect
